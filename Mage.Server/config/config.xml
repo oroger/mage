@@ -79,6 +79,7 @@
         <gameType name="Freeform Commander Free For All" jar="mage-game-freeformcommanderfreeforall.jar" className="mage.game.FreeformCommanderFreeForAllMatch" typeName="mage.game.FreeformCommanderFreeForAllType"/>
         <gameType name="Momir Basic Two Player Duel" jar="mage-game-momirduel.jar" className="mage.game.MomirDuelMatch" typeName="mage.game.MomirDuelType"/>
         <gameType name="Momir Basic Free For All" jar="mage-game-momir.jar" className="mage.game.MomirFreeForAllMatch" typeName="mage.game.MomirFreeForAllType"/>
+        <gameType name="Gentry Basic Two Player Duel" jar="mage-game-gentryduel.jar" className="mage.game.GentryDuelMatch" typeName="mage.game.GentryDuelType"/>
     </gameTypes>
     <tournamentTypes>
         <tournamentType name="Constructed Elimination" jar="mage-tournament-constructed.jar" className="mage.tournament.ConstructedEliminationTournament" typeName="mage.tournament.ConstructedEliminationTournamentType"/>
@@ -148,6 +149,7 @@
         <deckType name="Constructed - Australian Highlander" jar="mage-deck-constructed.jar" className="mage.deck.AusHighlander"/>
         <deckType name="Constructed - Canadian Highlander" jar="mage-deck-constructed.jar" className="mage.deck.CanadianHighlander"/>
         <deckType name="Constructed - Freeform" jar="mage-deck-constructed.jar" className="mage.deck.Freeform"/>
+        <deckType name="Constructed - Gentry" jar="mage-deck-constructed.jar" className="mage.deck.Gentry"/>
         <deckType name="Variant Magic - Commander" jar="mage-deck-constructed.jar" className="mage.deck.Commander"/>
         <deckType name="Variant Magic - Duel Commander" jar="mage-deck-constructed.jar" className="mage.deck.DuelCommander"/>
         <deckType name="Variant Magic - MTGO 1v1 Commander" jar="mage-deck-constructed.jar" className="mage.deck.MTGO1v1Commander"/>
