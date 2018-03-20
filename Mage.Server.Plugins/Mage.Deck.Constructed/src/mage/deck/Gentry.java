@@ -42,53 +42,10 @@ import java.util.*;
  * @author oroger
  * @see <a href="http://gentrymagic.com/about/">gentrymagic.com</a>``
  */
-public class Gentry extends Constructed {
+public class Gentry extends Standard {
 
     public Gentry() {
-        this("Gentry");
-    }
-
-    public Gentry(String name) {
-        super(name);
-        GregorianCalendar current = new GregorianCalendar();
-        List<ExpansionSet> sets = new ArrayList(Sets.getInstance().values());
-        Collections.sort(sets, new Comparator<ExpansionSet>() {
-            @Override
-            public int compare(final ExpansionSet lhs, ExpansionSet rhs) {
-                return lhs.getReleaseDate().after(rhs.getReleaseDate()) ? -1 : 1;
-            }
-        });
-        int blocksAdded = 0;
-        int blocksToAdd = 3;
-        for (Iterator<ExpansionSet> iter = sets.iterator(); iter.hasNext() && blocksAdded < blocksToAdd;) {
-            ExpansionSet set = iter.next();
-            if (set.getSetType() == SetType.CORE || set.getSetType() == SetType.EXPANSION || set.getSetType() == SetType.SUPPLEMENTAL_STANDARD_LEGAL) {    // Still adding core sets because of Magic Origins
-
-                setCodes.add(set.getCode());
-                if (set.getReleaseDate().before(current.getTime()) // This stops spoiled sets from counting as "new" blocks
-                        && set.getParentSet() == null
-                        && set.getSetType() == SetType.EXPANSION) {
-                    if (blocksAdded == 0 && !isFallBlock(set)) { // if the most current block is no fall block, 4 blocks are added
-                        blocksToAdd++;
-                    }
-                    blocksAdded++;
-                }
-            }
-        }
-        banned.add("Attune with Aether"); // since 2008-01-15
-        banned.add("Aetherworks Marvel");
-        banned.add("Felidar Guardian");
-        banned.add("Rampaging Ferocidon"); // since 2008-01-15
-        banned.add("Ramunap Ruins"); // since 2008-01-15
-        banned.add("Rogue Refiner"); // since 2008-01-15
-        banned.add("Smuggler's Copter");
-    }
-
-    private static boolean isFallBlock(ExpansionSet set) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(set.getReleaseDate());
-        // Sets from fall block are normally released in September and January
-        return cal.get(Calendar.MONTH) > 7 || cal.get(Calendar.MONTH) < 2;
+        super("Gentry");
     }
 
     @Override

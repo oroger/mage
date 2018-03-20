@@ -46,7 +46,11 @@ import mage.constants.SetType;
 public class Standard extends Constructed {
 
     public Standard() {
-        super("Constructed - Standard");
+        this("Constructed - Standard");
+    }
+
+    public Standard(String name) {
+        super(name);
         GregorianCalendar current = new GregorianCalendar();
         List<ExpansionSet> sets = new ArrayList(Sets.getInstance().values());
         Collections.sort(sets, new Comparator<ExpansionSet>() {
