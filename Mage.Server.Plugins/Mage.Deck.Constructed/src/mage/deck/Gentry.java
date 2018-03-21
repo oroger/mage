@@ -50,25 +50,41 @@ public class Gentry extends Standard {
 
     @Override
     public boolean validate(Deck deck) {
+        /*
+         * 1. You are only allowed cards that appear in the last 3 block. These are the Standard legal sets.
+         * 2. Your main deck has to have at least 60 cards, your sideboard can have up to 15 cards.
+         */
+
+        // Inherited from Standard/Constructed superclasses Constructor/validate() method
         boolean valid = super.validate(deck);
 
-        /**
-         * 1. You are only allowed cards that appear in the last 3 block. These are the Standard legal sets. (From Standard Constructor)
-         * 2. Your main deck has to have at least 60 cards, your sideboard can have up to 15 cards. (From Constructed.validate())
-         * 3. You are allowed a maximum of 15 Uncommons
-         * 4. You are allowed a maximum of 4 Rares and/or Mythic rares in your combined maindeck and sideboard that have to be individually different.
+        /*
+         * 3. You are allowed a maximum of 15 Uncommons.
          */
 
         List<Card> uncommons = getCardsFromRarity(deck, Rarity.UNCOMMON);
         if (uncommons.size() > 15) {
-            invalid.put("Uncommons", "Can contain up to 15 uncommon cards: has " + uncommons.size() + " cards");
+            invalid.put("Uncommons", "Deck an contain up to 15 uncommon cards: has " + uncommons.size() + " cards");
             valid = false;
         }
 
+        /*
+         * 4. You are allowed a maximum of 4 Rares and/or Mythic rares in your combined maindeck and sideboard that have to be individually different.
+         */
+
         List<Card> raresAndMythics = getCardsFromRarity(deck, Rarity.RARE, Rarity.MYTHIC);
         if (raresAndMythics.size() > 4) {
-            invalid.put("Rares & Mythics", "Can contain up to 4 rare/mythic cards: has " + raresAndMythics.size() + " cards");
+            invalid.put("Rares & Mythics", "Deck can contain up to 4 rare/mythic cards: has " + raresAndMythics.size() + " cards");
             valid = false;
+        }
+
+        Map<String, Integer> counts = new HashMap<>();
+        countCards(counts, raresAndMythics);
+        for (Map.Entry<String, Integer> entry : counts.entrySet()) {
+            if (entry.getValue() > 1) {
+                invalid.put(entry.getKey(), "Too many: " + entry.getValue() + ". Rare/mythic card have to be individually different.");
+                valid = false;
+            }
         }
 
         return valid;
