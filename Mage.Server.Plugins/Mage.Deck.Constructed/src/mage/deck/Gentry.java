@@ -64,7 +64,7 @@ public class Gentry extends Standard {
 
         List<Card> uncommons = getCardsFromRarity(deck, Rarity.UNCOMMON);
         if (uncommons.size() > 15) {
-            invalid.put("Uncommons", "Deck an contain up to 15 uncommon cards: has " + uncommons.size() + " cards");
+            invalid.put("Uncommons", "Deck can contain up to 15 uncommon cards: has " + uncommons.size() + " cards");
             valid = false;
         }
 
